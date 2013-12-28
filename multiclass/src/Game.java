@@ -7,6 +7,8 @@ public class Game {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
+		Interface test = new Interface();
+		test.outPrint();
 		WithComputer onePlayer = new WithComputer();
 		TicTacToe twoPlayers = new TicTacToe();
 		char choise, ignore;
