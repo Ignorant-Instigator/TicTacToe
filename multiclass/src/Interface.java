@@ -8,7 +8,7 @@ public class Interface implements ActionListener {
 	JButton buttons[] = new JButton[9];
 	JLabel bground;
 
-	void setUp(JButton btn) {
+	void setUpButton(JButton btn) {
 		btn.setBorderPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.setFocusPainted(false);
@@ -18,7 +18,7 @@ public class Interface implements ActionListener {
 	}
 
 	void setUpFrame() {
-		frame = new JFrame("Testing");
+		frame = new JFrame("TicTacToe");
 		frame.setSize(252, 273);
 		frame.setLayout(new BorderLayout());
 		frame.setResizable(false);
@@ -35,17 +35,21 @@ public class Interface implements ActionListener {
 		for (int a = 0; a < buttons.length; a++) {
 			buttons[a] = new JButton(new ImageIcon("D:/pics/empty.png"));
 			buttons[a].setActionCommand("" + a);
-			setUp(buttons[a]);
+			setUpButton(buttons[a]);
 		}
 	}
 
 	Interface() {
 		setUpFrame();
+
 	}
 
 	public void actionPerformed(ActionEvent ae) {
 		String tmp = ae.getActionCommand();
-		System.out.println(tmp);
+		int index = Integer.parseInt(tmp);
+		buttons[index].setIcon(new ImageIcon("D:/pics/x.png"));
+		System.out.println(index);
+
 	}
 
 	public static void main(String[] args) {
@@ -56,4 +60,5 @@ public class Interface implements ActionListener {
 		});
 
 	}
+
 }
