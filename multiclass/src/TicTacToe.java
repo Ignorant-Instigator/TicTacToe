@@ -1,19 +1,8 @@
-import java.io.IOException;
-
 class TicTacToe {
 	char field[][] = { { 'a', 'b', 'c' }, { 'd', 'e', 'f' }, { 'g', 'h', 'i' } };
 	char figure;
 	int isMove = 1;
 
-	void launch() throws java.io.IOException {
-		showField();
-		while (winningConditions()) {
-			currentFigure();
-			input();
-			showField();
-		}
-		clearUp();
-	}
 
 	void showField() {
 		for (int a = 0; a < field.length; a++)
@@ -34,30 +23,14 @@ class TicTacToe {
 		isMove = 1;
 	}
 
-	void currentFigure() {
+	String currentFigure() {
+		String path = "";
 		if (isMove % 2 == 0)
-			figure = 'o';
+			path = "D:/pics/o.png";
 		else
-			figure = 'x';
+			path = "D:/pics/x.png";
 		isMove++;
-	}
-
-	void input() throws IOException {
-		char input, ignore;
-		boolean forbidden = true;
-		do {
-			input = (char) System.in.read();
-			do {
-				ignore = (char) System.in.read();
-			} while (ignore != '\n');
-			for (char a[] : field)
-				for (char b : a)
-					if (b == input)
-						forbidden = false;
-			if (input < 'a' || input > 'i' || forbidden)
-				System.out.println("Wrong coordinate!");
-		} while (input < 'a' || input > 'i' || forbidden);
-		replaceCoordinate(input);
+		return path;
 	}
 
 	void replaceCoordinate(char input) throws IOException {
