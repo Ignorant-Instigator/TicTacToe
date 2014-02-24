@@ -1,45 +1,23 @@
-class TicTacToe {
-	char field[][] = { { 'a', 'b', 'c' }, { 'd', 'e', 'f' }, { 'g', 'h', 'i' } };
+class Logic {
+	char used[] = new char[9];
 	char figure;
 	int isMove = 1;
 
-
-	void showField() {
-		for (int a = 0; a < field.length; a++)
-			for (int b = 0; b < field[0].length; b++) {
-				System.out.print(field[a][b] + "|");
-				if (b == 2)
-					System.out.println(" ");
-			}
-	}
-
-	void clearUp() {
-		char letter = 'a';
-		for (int a = 0; a < field.length; a++)
-			for (int b = 0; b < field[0].length; b++) {
-				field[a][b] = letter;
-				letter++;
-			}
-		isMove = 1;
-	}
-
 	String currentFigure() {
 		String path = "";
-		if (isMove % 2 == 0)
+		if (isMove % 2 == 0) {
 			path = "D:/pics/o.png";
-		else
+			figure = 'o';
+		} else {
 			path = "D:/pics/x.png";
+			figure = 'x';
+		}
 		isMove++;
 		return path;
 	}
 
-	void replaceCoordinate(char input) throws IOException {
-		for (int a = 0; a < field.length; a++)
-			for (int b = 0; b < field[0].length; b++) {
-				if (field[a][b] == input) {
-					field[a][b] = figure;
-				}
-			}
+	void replaceCoordinate(int index) {
+		used[index] = figure;
 	}
 
 	boolean winningConditions() {

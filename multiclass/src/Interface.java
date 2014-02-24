@@ -7,7 +7,7 @@ public class Interface implements ActionListener {
 	JFrame frame;
 	JButton buttons[] = new JButton[9];
 	JLabel bground;
-	TicTacToe access=new TicTacToe();
+	Logic access=new Logic();
 
 	void setUpButton(JButton btn) {
 		btn.setBorderPainted(false);
@@ -50,7 +50,7 @@ public class Interface implements ActionListener {
 		int index = Integer.parseInt(tmp);
 		buttons[index].setIcon(new ImageIcon(access.currentFigure()));
 		buttons[index].removeActionListener(this);
-		System.out.println(index);
+		access.replaceCoordinate(index);
 
 	}
 
