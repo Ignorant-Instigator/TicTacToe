@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -7,7 +8,14 @@ public class Interface implements ActionListener {
 	JFrame frame;
 	JButton buttons[] = new JButton[9];
 	JLabel bground;
-	Logic access=new Logic();
+	Logic access = new Logic();
+
+	void clearUp() {
+		for (JButton tmp : buttons) {
+			tmp.addActionListener(this);
+			tmp.setIcon(new ImageIcon("D:/pics/empty.png"));
+		}
+	}
 
 	void setUpButton(JButton btn) {
 		btn.setBorderPainted(false);
@@ -51,6 +59,20 @@ public class Interface implements ActionListener {
 		buttons[index].setIcon(new ImageIcon(access.currentFigure()));
 		buttons[index].removeActionListener(this);
 		access.replaceCoordinate(index);
+		if (!access.winningConditions()) {
+			for (int a = 0; a < buttons.length; a++) {
+				buttons[a].removeActionListener(this);
+			}
+			JOptionPane.showMessageDialog(frame, access.winnerMsg());
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			clearUp();
+			access.clearUp();
+		}
 
 	}
 

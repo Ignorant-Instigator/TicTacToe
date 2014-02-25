@@ -1,7 +1,18 @@
 class Logic {
-	char used[] = new char[9];
+	char field[][] = new char[3][3];
 	char figure;
 	int isMove = 1;
+	String msg;
+
+	void clearUp() {
+		char tmp='a';
+		for (int a = 0; a < field.length; a++)
+			for (int b = 0; b < field[a].length; b++){
+				field[a][b] =tmp ;
+				tmp++;
+			}
+		isMove = 1;
+	}
 
 	String currentFigure() {
 		String path = "";
@@ -16,8 +27,23 @@ class Logic {
 		return path;
 	}
 
+	String winnerMsg() {
+		return msg;
+	}
+
 	void replaceCoordinate(int index) {
-		used[index] = figure;
+		if (index < 3) {
+			field[0][index] = figure;
+			return;
+		}
+		if (index < 6) {
+			field[1][index - 3] = figure;
+			return;
+		}
+		if (index < 9) {
+			field[2][index - 6] = figure;
+			return;
+		}
 	}
 
 	boolean winningConditions() {
@@ -28,7 +54,7 @@ class Logic {
 				if (field[a][b] == figure)
 					counter++;
 				if (counter == 3) {
-					System.out.println(figure + " have won!");
+					msg = figure + " have won!";
 					return false;
 				}
 			}
@@ -39,7 +65,7 @@ class Logic {
 				if (field[b][a] == figure)
 					counter++;
 				if (counter == 3) {
-					System.out.println(figure + " have won!");
+					msg = figure + " have won!";
 					return false;
 				}
 			}
@@ -49,7 +75,7 @@ class Logic {
 			if (field[a][field[0].length - a - 1] == figure)
 				counter++;
 			if (counter == 3) {
-				System.out.println(figure + " have won!");
+				msg = figure + " have won!";
 				return false;
 			}
 		}
@@ -58,7 +84,7 @@ class Logic {
 			if (field[a][a] == figure)
 				counter++;
 			if (counter == 3) {
-				System.out.println(figure + " have won!");
+				msg = figure + " have won!";
 				return false;
 			}
 		}
@@ -68,7 +94,7 @@ class Logic {
 				if (b == 'x' || b == 'o')
 					counter++;
 				if (counter == 9) {
-					System.out.println("Draw!");
+					msg = "Draw!";
 					return false;
 				}
 			}
