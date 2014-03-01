@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -8,8 +7,8 @@ public class Field implements ActionListener {
 	Logic access = new Logic();
 	JFrame frame;
 
-	Field(JFrame tmp) {
-		frame=tmp;
+	void start(JFrame frm) {
+		frame = frm;
 		addButtons();
 	}
 
@@ -29,13 +28,13 @@ public class Field implements ActionListener {
 		frame.add(btn);
 	}
 
-
 	void addButtons() {
 		for (int a = 0; a < buttons.length; a++) {
 			buttons[a] = new JButton(new ImageIcon("D:/pics/empty.png"));
 			buttons[a].setActionCommand("" + a);
 			setUpButton(buttons[a]);
 		}
+		
 	}
 
 	public void actionPerformed(ActionEvent ae) {
@@ -54,15 +53,14 @@ public class Field implements ActionListener {
 				try {
 					Thread.sleep(3000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				clearUp();
 				access.clearUp();
 			}
 		} else {
-			
+
 		}
-			
+
 	}
 }

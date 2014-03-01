@@ -1,17 +1,16 @@
 import java.awt.*;
-import java.awt.event.*;
-
 import javax.swing.*;
-import javax.swing.border.*;
 
-public class Interface implements ActionListener {
-	Field show ;
+public class Interface {
+	Field show;
+	Menu open = new Menu();
 	JFrame frame;
 	JLabel bground;
 
 	Interface() {
-	setUpFrame();
-	show = new Field(frame);
+		setUpFrame();
+		open.start(frame);
+
 	}
 
 	void setUpFrame() {
@@ -25,10 +24,6 @@ public class Interface implements ActionListener {
 		frame.setContentPane(new JLabel(new ImageIcon("D:/pics/bgb.png")));
 		frame.setLayout(new FlowLayout());
 		frame.setVisible(true);
-	}
-
-	public void actionPerformed(ActionEvent ae) {
-
 	}
 
 	public static void main(String[] args) {
