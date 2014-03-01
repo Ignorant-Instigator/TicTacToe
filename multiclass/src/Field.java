@@ -4,13 +4,13 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class Field implements ActionListener {
-	JFrame frame;
 	JButton buttons[] = new JButton[9];
-	JLabel bground;
 	Logic access = new Logic();
+	JFrame frame;
 
-	Field() {
-		setUpFrame();
+	Field(JFrame tmp) {
+		frame=tmp;
+		addButtons();
 	}
 
 	void clearUp() {
@@ -29,19 +29,6 @@ public class Field implements ActionListener {
 		frame.add(btn);
 	}
 
-	void setUpFrame() {
-		frame = new JFrame("TicTacToe");
-		frame.setSize(252, 273);
-		frame.setLayout(new BorderLayout());
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		bground = new JLabel(new ImageIcon("D:/pics/bg.png"));
-		frame.setContentPane(new JLabel(new ImageIcon("D:/pics/bgb.png")));
-		frame.setLayout(new FlowLayout());
-		addButtons();
-		frame.setVisible(true);
-	}
 
 	void addButtons() {
 		for (int a = 0; a < buttons.length; a++) {
@@ -73,7 +60,9 @@ public class Field implements ActionListener {
 				clearUp();
 				access.clearUp();
 			}
-		} else
-			setUpFrame();
+		} else {
+			
+		}
+			
 	}
 }
