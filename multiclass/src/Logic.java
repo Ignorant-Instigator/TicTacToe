@@ -4,11 +4,35 @@ class Logic {
 	int isMove = 1;
 	String msg;
 
+	int getField(int a, int b) {
+		return field[a][b];
+	}
+
+	boolean availableMove(int index) {
+		int a = 0, b = 0;
+		if (index < 3) {
+			a = 0;
+			b = index;
+		}
+		if (index < 6 && index > 3) {
+			a = 1;
+			b = index - 3;
+
+		}
+		if (index < 9 && index > 6) {
+			a = 2;
+			b = index - 6;
+		}
+		if (field[a][b] != 0)
+			return true;
+		return false;
+	}
+
 	void clearUp() {
-		char tmp='a';
+		char tmp = 'a';
 		for (int a = 0; a < field.length; a++)
-			for (int b = 0; b < field[a].length; b++){
-				field[a][b] =tmp ;
+			for (int b = 0; b < field[a].length; b++) {
+				field[a][b] = tmp;
 				tmp++;
 			}
 		isMove = 1;
@@ -28,6 +52,7 @@ class Logic {
 	}
 
 	String winnerMsg() {
+		winningConditions();
 		return msg;
 	}
 

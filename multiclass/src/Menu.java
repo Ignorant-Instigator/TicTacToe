@@ -21,12 +21,9 @@ public class Menu implements ActionListener {
 		}
 	}
 
-	void removeButtons() {
-		System.out.println("remove");
+	void hideButtons() {
 		for (int a = 0; a < modeBtn.length; a++) {
-			modeBtn[a].setIcon(new ImageIcon(""));
-			frame.remove(modeBtn[a]);
-			frame.repaint();
+			modeBtn[a].setVisible(false);
 		}
 	}
 
@@ -41,9 +38,8 @@ public class Menu implements ActionListener {
 
 	public void actionPerformed(ActionEvent ae) {
 		String tmp = ae.getActionCommand();
-		System.out.println(tmp);
 		if (tmp.equals("0")) {
-			removeButtons();
+			hideButtons();
 			field.start(frame);
 		}
 	}

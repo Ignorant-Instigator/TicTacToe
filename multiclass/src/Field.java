@@ -34,31 +34,37 @@ public class Field implements ActionListener {
 			buttons[a].setActionCommand("" + a);
 			setUpButton(buttons[a]);
 		}
-		
+
+	}
+
+	void makeMove(int index) {
+		buttons[index].setIcon(new ImageIcon(access.currentFigure()));
+		buttons[index].removeActionListener(this);
+		access.replaceCoordinate(index);
+	}
+
+	void hideField() {
+		for (int a = 0; a < buttons.length; a++) {
+			buttons[a].setVisible(false);
+		}
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		if (!ae.getActionCommand().equals("begin")) {
-			String tmp = ae.getActionCommand();
-			int index = Integer.parseInt(tmp);
-			buttons[index].setIcon(new ImageIcon(access.currentFigure()));
-			buttons[index].removeActionListener(this);
-			access.replaceCoordinate(index);
-			if (!access.winningConditions()) {
-				for (int a = 0; a < buttons.length; a++) {
-					buttons[a].removeActionListener(this);
-				}
-				JOptionPane.showMessageDialog(frame, access.winnerMsg()
-						+ " Wait 3 sec to play again");
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				clearUp();
-				access.clearUp();
+		int index = Integer.parseInt(ae.getActionCommand());
+		makeMove(index);
+		if (!access.winningConditions()) {
+			for (int a = 0; a < buttons.length; a++) {
+				buttons[a].removeActionListener(this);
 			}
-		} else {
+			hideField();
+			MessageBox qw = new MessageBox(frame);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			clearUp();
+			access.clearUp();
 
 		}
 
